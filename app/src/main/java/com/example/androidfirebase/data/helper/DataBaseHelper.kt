@@ -77,4 +77,5 @@ class DataBaseHelper {
             .document(docId)
             .delete()
     }
+
 }

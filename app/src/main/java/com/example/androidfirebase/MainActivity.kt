@@ -7,9 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.androidfirebase.data.helper.AuthHelper.Companion.authHelper
 import com.example.androidfirebase.data.helper.DataBaseHelper.Companion.dbHelper
 import com.example.androidfirebase.data.model.TodoModel
 import com.example.androidfirebase.databinding.ActivityMainBinding
+import com.example.androidfirebase.view.activity.SignInActivity
 import com.example.androidfirebase.view.activity.WriteTodoActivity
 import com.example.androidfirebase.view.adapter.TodoAdapter
 import kotlinx.coroutines.Dispatchers
@@ -36,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         initTodoIntent()
+        initLogOut()
 
         todoAdapter = TodoAdapter(todoList)
         Log.e("TAG", "onCreate: =============== $todoList", )
@@ -58,6 +61,15 @@ class MainActivity : AppCompatActivity() {
     {
         binding.floatingActionButton.setOnClickListener {
             startActivity(Intent(this,WriteTodoActivity::class.java))
+        }
+    }
+
+    fun initLogOut()
+    {
+        binding.logOutBtn.setOnClickListener {
+            authHelper.userLogOut()
+            startActivity(Intent(this,SignInActivity::class.java))
+            finish()
         }
     }
 }

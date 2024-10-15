@@ -52,7 +52,7 @@ class AuthHelper  {
         user = auth.currentUser
     }
 
-    fun logOut()
+    fun userLogOut()
     {
         auth.signOut()
     }
